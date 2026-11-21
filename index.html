@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ContactHub - Smart Contact Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-icon"><i class="fa-solid fa-address-book"></i></div>
+        <div>
+          <h1>Contact<span>Hub</span></h1>
+          <p>Smart Contact Manager</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn-primary" id="openAdd"><i class="fa-solid fa-plus"></i> Add Contact</button>
+        <button class="icon-plain" aria-label="Notifications"><i class="fa-solid fa-bell"></i></button>
+        <button class="icon-plain" aria-label="Settings"><i class="fa-solid fa-gear"></i></button>
+        <div class="avatar-top">
+          <img src="./images/avatar-4.jpg" alt="Profile" onerror="this.replaceWith(Object.assign(document.createElement('i'), {className: 'fa-solid fa-user'}))" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="stats">
+      <div class="stat-card">
+        <div class="stat-icon blue"><i class="fa-solid fa-users"></i></div>
+        <div><span>TOTAL</span><strong id="totalCount">0</strong></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon orange"><i class="fa-solid fa-star"></i></div>
+        <div><span>FAVORITES</span><strong id="favCount">0</strong></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon red"><i class="fa-solid fa-heart-pulse"></i></div>
+        <div><span>EMERGENCY</span><strong id="emgCount">0</strong></div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <div class="main-col">
+        <h2>All Contacts</h2>
+        <p class="sub" id="subtitle">Manage and organize your 0 contacts</p>
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Search by name, phone, or email..." />
+        </div>
+        <div class="contacts-grid" id="contactsGrid"></div>
+        <div class="empty" id="emptyState">
+          <div class="empty-icon"><i class="fa-solid fa-address-book"></i></div>
+          <p class="empty-title">No contacts found</p>
+          <p class="empty-sub">Click "Add Contact" to get started</p>
+        </div>
+      </div>
+
+      <aside class="side-col">
+        <div class="side-card">
+          <div class="side-head fav-head">
+            <div class="stat-icon orange sm"><i class="fa-solid fa-star"></i></div>
+            <div><h3>Favorites</h3><p>Quick access to starred contacts</p></div>
+          </div>
+          <div class="side-body" id="favList"></div>
+        </div>
+        <div class="side-card">
+          <div class="side-head emg-head">
+            <div class="stat-icon red sm"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div><h3>Emergency</h3><p>Important contacts for urgent calls</p></div>
+          </div>
+          <div class="side-body" id="emgList"></div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="modalTitle">Add New Contact</h3>
+        <button class="close-btn" id="closeModal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="photo-wrap">
+          <div class="photo-circle" id="photoPreview"><i class="fa-solid fa-user"></i></div>
+          <label class="btn-photo" for="photoInput"><i class="fa-solid fa-camera"></i> Change Photo</label>
+          <input type="file" id="photoInput" accept="image/*" hidden />
+        </div>
+
+        <label class="lbl">Full Name <b>*</b></label>
+        <input type="text" id="name" placeholder="Enter full name" />
+
+        <label class="lbl">Phone Number <b>*</b></label>
+        <input type="tel" id="phone" placeholder="e.g., 01012345678" />
+
+        <label class="lbl">Email Address</label>
+        <input type="email" id="email" placeholder="name@example.com" />
+
+        <label class="lbl">Address</label>
+        <input type="text" id="address" placeholder="Enter address" />
+
+        <label class="lbl">Group</label>
+        <select id="group">
+          <option value="">Select a group</option>
+          <option>Family</option>
+          <option>Friends</option>
+          <option>Work</option>
+          <option>School</option>
+          <option>Other</option>
+        </select>
+
+        <label class="lbl">Notes</label>
+        <textarea id="notes" rows="2" placeholder="Add notes about this contact"></textarea>
+
+        <div class="checks">
+          <label><input type="checkbox" id="isFav" /> <i class="fa-solid fa-star star"></i> Favorite</label>
+          <label><input type="checkbox" id="isEmg" /> <i class="fa-solid fa-heart-pulse pulse"></i> Emergency</label>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-cancel" id="cancelBtn">Cancel</button>
+          <button class="btn-primary" id="saveBtn"><i class="fa-solid fa-check"></i> Save Contact</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>
